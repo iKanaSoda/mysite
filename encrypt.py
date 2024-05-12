@@ -1,12 +1,8 @@
-import os
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-
-# Get the secret key from GitHub Secret
 app.secret_key = os.environ.get('PASSWORD')
 if app.secret_key is None:
     raise ValueError("Secret key not found in environment variables")
@@ -23,7 +19,7 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
 
 # Routes for signup, login, and logout
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/mysite/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
@@ -41,7 +37,7 @@ def signup():
             return redirect(url_for('login'))
     return render_template('signup.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/mysite/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
