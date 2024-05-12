@@ -18,7 +18,6 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
-# Routes for signup, login, and logout
 @app.route('/mysite/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
