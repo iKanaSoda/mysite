@@ -1,10 +1,18 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db'
+
+# Get the secret key from GitHub Secret
+app.secret_key = os.environ.get('PASSWORD')
+if app.secret_key is None:
+    raise ValueError("Secret key not found in environment variables")
+
+# Replace these values with your actual database credentials
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sql3705911:{password}@sql3.freesqldatabase.com/sql3705911'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
