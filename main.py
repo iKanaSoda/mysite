@@ -62,4 +62,3 @@ if __name__ == '__main__':
         socketio.run(app, host='0.0.0.0', port=port)
     except Exception as e:
         print(f"Failed to start the server: {e}")
-a
